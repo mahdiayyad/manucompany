@@ -7,7 +7,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
-const port = 3000;
+const port = 3001;
 
 // Static Files 
 app.use(express.static('content'));
@@ -15,11 +15,11 @@ app.use(express.static(path.join(__dirname + '/content/')));
 app.use(express.json());
 
 // Set Views
-app.set('views', [__dirname + '/views/en', __dirname + '/views/tr', __dirname + '/views/ar', __dirname + '/views/en/product', __dirname + '/views/en/product/mercedes', __dirname + '/views/tr/urun', __dirname + '/views/tr/urun/mercedes-tr', __dirname + '/views/ar/el-muntec', __dirname + '/views/ar/el-muntec/mercedes-ar']);
+app.set('views', [__dirname + '/views/', __dirname + '/views/en', __dirname + '/views/tr', __dirname + '/views/ar', __dirname + '/views/en/product', __dirname + '/views/en/product/mercedes', __dirname + '/views/tr/urun', __dirname + '/views/tr/urun/mercedes-tr', __dirname + '/views/ar/el-muntec', __dirname + '/views/ar/el-muntec/mercedes-ar']);
 app.set('view engine', 'ejs');
 
 
-
+app.get('/', (req, res) => res.render('index'));
 // english page
 app.get("/en", (req, res) => res.render("en"));
 
