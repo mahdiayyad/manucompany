@@ -57,13 +57,13 @@ app.get("/ar/el-muntec", (req, res) => res.render("el-muntec"));
 app.get("/ar/ittisalat", (req, res) => res.render("ittisalat"));
 
 // vision & mission en
-app.get("/en/vision-mission", (req, res) => res.render("vision-mission"));
+app.get("/en/quality-policy", (req, res) => res.render("quality-policy"));
 
 // vision & mission tr
-app.get("/tr/vizyon-misyon", (req, res) => res.render("vizyon-misyon"));
+app.get("/tr/kalite-politikamiz", (req, res) => res.render("kalite-politikamiz"));
 
 // vision & mission ar
-app.get("/ar/roytna-oahdafna", (req, res) => res.render("roytna-oahdafna"));
+app.get("/ar/siyasetil-cevde", (req, res) => res.render("siyasetil-cevde"));
 
 // corporate en
 app.get("/en/corporate", (req, res) => res.render("corporate"));
@@ -103,8 +103,8 @@ app.get('/en/product/mercedes/mercedes-capin', (req, res) => res.render('mercede
 app.get('/en/product/mercedes/mercedes-gear', (req, res) => res.render('mercedes-gear'));
 // BALANCE
 app.get('/en/product/mercedes/mercedes-balance', (req, res) => res.render('mercedes-balance'));
-// MOTOMAR
-app.get('/en/product/mercedes/motomar', (req, res) => res.render('motomar'));
+// engine-parts
+app.get('/en/product/mercedes/engine-parts', (req, res) => res.render('engine-parts'));
 
 // tr products
 app.get('/tr/urun/handle-gear-tr', (req, res) => res.render('handle-gear-tr'));
@@ -120,7 +120,7 @@ app.get('/tr/urun/mercedes-tr/mercedes-balance-tr', (req, res) => res.render('me
 app.get('/tr/urun/mercedes-tr/mercedes-chassis-tr', (req, res) => res.render('mercedes-chassis-tr'));
 app.get('/tr/urun/mercedes-tr/mercedes-gear-tr', (req, res) => res.render('mercedes-gear-tr'));
 app.get('/tr/urun/mercedes-tr/mercedes-capin-tr', (req, res) => res.render('mercedes-capin-tr'));
-app.get('/tr/urun/mercedes-tr/motomar-tr', (req, res) => res.render('motomar-tr'));
+app.get('/tr/urun/mercedes-tr/engine-parts-tr', (req, res) => res.render('engine-parts-tr'));
 
 // ar products
 app.get('/ar/el-muntec/handle-gear-ar', (req, res) => res.render('handle-gear-ar'));
@@ -137,7 +137,7 @@ app.get('/ar/el-muntec/mercedes-ar/mercedes-balance-ar', (req, res) => res.rende
 app.get('/ar/el-muntec/mercedes-ar/mercedes-chassis-ar', (req, res) => res.render('mercedes-chassis-ar'));
 app.get('/ar/el-muntec/mercedes-ar/mercedes-gear-ar', (req, res) => res.render('mercedes-gear-ar'));
 app.get('/ar/el-muntec/mercedes-ar/mercedes-capin-ar', (req, res) => res.render('mercedes-capin-ar'));
-app.get('/ar/el-muntec/mercedes-ar/motomar-ar', (req, res) => res.render('motomar-ar'));
+app.get('/ar/el-muntec/mercedes-ar/engine-parts-ar', (req, res) => res.render('engine-parts-ar'));
 
 
 app.post(['/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisalat'], (req, res) => {
@@ -153,7 +153,7 @@ app.post(['/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisalat'], 
 
     const mailOptions = {
         from: req.body.email,
-        to: 'mahditest97@gmail.com',
+        to: 'manu@manucompany.com',
         subject: `Message from ${req.body.email}: ${req.body.subject}`,
         text: req.body.message
     }

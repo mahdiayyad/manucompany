@@ -60,6 +60,11 @@ body, button, input, select, textarea {
     text-decoration: none;
 }
 
+#language {
+    background: linear-gradient(90deg, rgba(20,20,20,1) 60%, rgba(20,20,20,1) 0%, rgba(255,0,0,1) 100%);
+    color:#ED2025;
+}
+
 .hd-top {
     background: linear-gradient(90deg, rgba(20,20,20,1) 60%, rgba(20,20,20,1) 0%, rgba(255,0,0,1) 100%);
 }
@@ -946,3 +951,26 @@ p {
     -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
     background-color: #D62929;
 }
+
+.w-101 {
+    width: 58%;
+    position: relative;
+    top: 0px;
+    left: 200px;
+}
+
+@media only screen and (max-width: 900px) {
+    body {
+        overflow-x: hidden;
+    }
+    .banner-page {
+        background: none;
+    }
+
+    .banner-page .content-wrap, .breadcrumb-item {
+        display:none;  
+    }
+    .banner-page .breadcrumb > .active, .banner-page .breadcrumb a {
+        display:none;
+    }
+  }
