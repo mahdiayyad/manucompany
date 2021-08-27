@@ -18,6 +18,16 @@ app.use(express.json());
 app.set('views', [__dirname + '/views/', __dirname + '/views/en', __dirname + '/views/tr', __dirname + '/views/ar', __dirname + '/views/en/product', __dirname + '/views/en/product/mercedes', __dirname + '/views/tr/urun', __dirname + '/views/tr/urun/mercedes-tr', __dirname + '/views/ar/el-muntec', __dirname + '/views/ar/el-muntec/mercedes-ar']);
 app.set('view engine', 'ejs');
 
+// Body parser middleware 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.post('/email', (req, res) => {
+    // TODO
+    // send email here
+    res.json({message: 'Message recieved!!! '});
+});
+
 
 app.get('/', (req, res) => res.render('index'));
 // english page
@@ -139,20 +149,22 @@ app.get('/ar/el-muntec/mercedes-ar/mercedes-gear-ar', (req, res) => res.render('
 app.get('/ar/el-muntec/mercedes-ar/mercedes-capin-ar', (req, res) => res.render('mercedes-capin-ar'));
 app.get('/ar/el-muntec/mercedes-ar/engine-parts-ar', (req, res) => res.render('engine-parts-ar'));
 
-
-app.post(['/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisalat'], (req, res) => {
+app.post(['/' ,'/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisalat'], (req, res) => {
     console.log(req.body);
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.ethereal.email',
+        port: 587,
+        secure: false,
+        debug: true,
         auth: {
-            user: 'mahditest97@gmail.com',
-            pass: 'webtest0!'
+            user: 'lewis11@ethereal.email',
+            pass: 'JWbFxdkentb46SeBEw'
         }
-    })
+    });
 
     const mailOptions = {
-        from: req.body.email,
+        from: req.body.email,   
         to: 'manu@manucompany.com',
         subject: `Message from ${req.body.email}: ${req.body.subject}`,
         text: req.body.message

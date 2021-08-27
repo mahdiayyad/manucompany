@@ -18,6 +18,12 @@ contactForm.addEventListener('submit', (e) => {
 
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/en/contact');
+    xhr.open('POST', '/tr/iletisim');
+    xhr.open('POST', '/ar/ittisalat');
+    xhr.open('POST', '/');
+    xhr.open('POST', '/en');
+    xhr.open('POST', '/ar');
+    xhr.open('POST', '/tr');
     xhr.setRequestHeader('content-type', 'application/json');
     xhr.onload = function() {
         console.log(xhr.responseText);
