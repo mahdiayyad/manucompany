@@ -22,12 +22,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.post('/email', (req, res) => {
-    // TODO
-    // send email here
-    res.json({message: 'Message recieved!!! '});
-});
-
 
 app.get('/', (req, res) => res.render('index'));
 // english page
