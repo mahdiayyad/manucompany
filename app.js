@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const nodemailer = require('nodemailer');
 const app = express();
+const https = require('https');
 const path = require('path');
+const fs = require('fs');
 const expressLayouts = require('express-ejs-layouts');
 const port = 3001;
 
@@ -175,6 +177,13 @@ app.post(['/' ,'/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisala
     })
 });
 
-app.listen(port, ()=> {
-    console.log(`Server running on Port ${port}`);
-});
+// app.listen(port, ()=> {
+//     console.log(`Server running on Port ${port}`);
+// });
+
+const sslServer = https.createServer({
+    key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+}, app)
+
+sslServer.listen(port, () => console.log(`Secure server on port ${port}`))
