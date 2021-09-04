@@ -8,8 +8,9 @@ const app = express();
 const https = require('https');
 const path = require('path');
 const fs = require('fs');
+const hostname = 'manucompany.com';
 const expressLayouts = require('express-ejs-layouts');
-const port = 3001;
+const port = 443;
 
 // Static Files 
 app.use(express.static('content'));
@@ -181,9 +182,16 @@ app.post(['/' ,'/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisala
 //     console.log(`Server running on Port ${port}`);
 // });
 
-const sslServer = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-}, app)
+const httpsOptions = {
+    cert: fs.readFileSync('./cert/manucompany_com.crt'),
+    ca: fs.readFileSync('./cert/manucompany_com.ca-bundle'),
+    key: fs.readFileSync('./cert/manucompany_com.p7b')
+};
 
-sslServer.listen(port, () => console.log(`Secure server on port ${port}`))
+const httpsServer = https.createServer(httpsOptions, (req,res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end();
+});
+
+httpsServer.listen(port, hostname);
