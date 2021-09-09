@@ -6,11 +6,13 @@ const exphbs = require('express-handlebars');
 const nodemailer = require('nodemailer');
 const app = express();
 const https = require('https');
+const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const hostname = 'manucompany.com';
 const expressLayouts = require('express-ejs-layouts');
-const port = 3001;
+const httpPort = 80;
+const httpsPort = 443;
 
 // Static Files 
 app.use(express.static('content'));
@@ -178,20 +180,21 @@ app.post(['/' ,'/tr' ,'/en' ,'/ar' ,'/en/contact', '/tr/iletisim', '/ar/ittisala
     })
 });
 
-// app.listen(port, ()=> {
-//     console.log(`Server running on Port ${port}`);
-// });
-
 const httpsOptions = {
     cert: fs.readFileSync('./cert/manucompany_com.crt'),
     ca: fs.readFileSync('./cert/manucompany_com.ca-bundle'),
     key: fs.readFileSync('./cert/manucompany.key')
 };
 
-const httpsServer = https.createServer(httpsOptions, (req,res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end();
-});
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(httpsOptions, app);
 
-httpsServer.listen(port, hostname);
+app.use((req,res,next) => {
+    if(req.protocol === 'http') {
+        res.redirect(301, `https://${req.headers.host}${req.url}`);
+    }
+    next();
+})
+
+httpServer.listen(httpPort, hostname);
+httpsServer.listen(httpsServer, hostname);
